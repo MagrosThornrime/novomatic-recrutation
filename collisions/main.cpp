@@ -1,30 +1,23 @@
-#include <SFML/Graphics.hpp>
+#include <GameObject.h>
 
 int main() {
-    // Create a window with 800x600 dimensions and a title
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Test Window");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Collision visualizer");
 
-    // Create a red circle shape
-    sf::CircleShape circle(100.f); // radius 100
-    circle.setFillColor(sf::Color::Red);
-    circle.setPosition(300.f, 200.f); // center-ish
+    std::array<sf::Vector2f, 3> vertices = {sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 500.0f), sf::Vector2f(600.0f, 100.0f)};
 
-    // Main loop
+    GameObject gameObject(vertices);
+
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            // Close window when requested
             if (event.type == sf::Event::Closed)
                 window.close();
         }
 
-        // Clear screen with black color
         window.clear();
 
-        // Draw the circle
-        window.draw(circle);
+        gameObject.draw(window);
 
-        // Display the contents of the window
         window.display();
     }
 

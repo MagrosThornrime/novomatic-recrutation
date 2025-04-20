@@ -5,6 +5,19 @@ project(collisions)
 
 set(CMAKE_CXX_STANDARD 20)
 
+set(SOURCES
+        src/Player.cpp
+        src/Triangle.cpp
+        src/GameObject.cpp
+)
+
+set(HEADERS
+        include/Player.h
+        include/Triangle.h
+        include/GameObject.h
+)
+
 find_package(SFML REQUIRED)
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp ${SOURCES} ${HEADERS})
+target_include_directories(${PROJECT_NAME} PRIVATE include)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml::sfml)
