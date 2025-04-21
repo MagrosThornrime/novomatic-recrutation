@@ -8,6 +8,3 @@ class Collisions(ConanFile):
 
     def requirements(self):
         self.requires("sfml/2.6.2")
-
-def build_requirements(self):
-    self.tool_requires("cmake/[>=3.29]")
