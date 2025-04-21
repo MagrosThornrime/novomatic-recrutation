@@ -99,3 +99,8 @@ void Player::_calculateCenter(const std::array<sf::Vector2f, 3>& triangleVertice
 
 	_rotationCenter = sf::Vector2f(constants[0], constants[1]);
 }
+
+Player::Player(const std::array<sf::Vector2f, 3>& triangleVertices, float screenWidth, float screenHeight)
+    : GameObject(triangleVertices, screenWidth, screenHeight) {
+    _calculateCenter(triangleVertices);
+};
