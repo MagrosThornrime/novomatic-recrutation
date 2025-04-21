@@ -9,15 +9,18 @@ set(SOURCES
         src/Player.cpp
         src/Triangle.cpp
         src/GameObject.cpp
+        src/Application.cpp
 )
 
 set(HEADERS
         include/Player.h
         include/Triangle.h
         include/GameObject.h
+        include/Application.h
 )
 
 find_package(SFML REQUIRED)
+find_package(jsoncpp REQUIRED)
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME} PRIVATE include)
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml::sfml)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml::sfml JsonCpp::JsonCpp)

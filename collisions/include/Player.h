@@ -10,7 +10,7 @@ enum RotateDirection{
 };
 
 class Player : public GameObject {
-    float _moveVelocity = 250.0f, _rotationVelocity = 40.0f;
+    float _moveVelocity = 250.0f, _rotationVelocity = 60.0f;
 	sf::Vector2f _rotationCenter = sf::Vector2f(0.0f, 0.0f);
 	const float _EPSILON = 0.00001f;
 

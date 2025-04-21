@@ -9,3 +9,5 @@ How to run:
 ```bash
 ./build/collisions
 ```
+
+TODO: make it usable also on windows, test it on both systems
