@@ -70,10 +70,10 @@ void Application::_updateMovement(float deltaTime){
         _player->move(moveDown, deltaTime, _windowWidth, _windowHeight);
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-        _player->rotate(rotateLeft, deltaTime, _windowWidth, _windowHeight);
+        _player->rotate(rotateRight, deltaTime, _windowWidth, _windowHeight);
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::E)){
-        _player->rotate(rotateRight, deltaTime, _windowWidth, _windowHeight);
+        _player->rotate(rotateLeft, deltaTime, _windowWidth, _windowHeight);
     }
 }
 
