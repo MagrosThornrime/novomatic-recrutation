@@ -10,6 +10,7 @@ set(SOURCES
         src/Triangle.cpp
         src/GameObject.cpp
         src/Application.cpp
+        src/Collisions.cpp
 )
 
 set(HEADERS
@@ -17,6 +18,7 @@ set(HEADERS
         include/Triangle.h
         include/GameObject.h
         include/Application.h
+        include/Collisions.h
 )
 
 find_package(SFML REQUIRED)

@@ -89,6 +89,10 @@ void Application::run(){
         }
 
         _updateMovement(deltaTime);
+
+		GameObject* playerPtr = std::dynamic_pointer_cast<GameObject>(_player).get();
+		GameObject* gameObjectPtr = _gameObject.get();
+		GameObject::checkCollision(*playerPtr, *gameObjectPtr);
         _window.clear();
 
         _player->draw(_window);

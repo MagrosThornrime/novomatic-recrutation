@@ -1,4 +1,7 @@
 #include <GameObject.h>
+#include <Collisions.h>
+#include <iostream>
+#include <cmath>
 
 GameObject::GameObject(const std::array<sf::Vector2f, 3>& triangleVertices, float screenWidth, float screenHeight){
     _shape.setPointCount(3);
