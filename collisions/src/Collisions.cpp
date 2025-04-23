@@ -48,11 +48,11 @@ bool pointPassedOrigin(vec2 direction, vec2 supportVertex){
 vec2 perpendicularVector(vec2 vector1, vec2 vector2, vec2 vector3){
 	vec3 perpendicular = cross(to3D(vector1), to3D(vector2));
 	perpendicular = cross(perpendicular, to3D(vector3));
-	return normalize(to2D(perpendicular));
+	return to2D(perpendicular);
 }
 
 bool createLine(std::vector<vec2>& simplex, const triangle& triangle1, const triangle& triangle2){
-	vec2 direction = normalize(-simplex.back());
+	vec2 direction = -simplex.back();
 	simplex.push_back(minkowskiPoint(triangle1, triangle2, direction));
 	return pointPassedOrigin(direction, simplex.back());
 }
@@ -67,10 +67,10 @@ bool createTriangle(std::vector<vec2>& simplex, const triangle& triangle1, const
 
 bool containsOrigin(std::vector<vec2>& simplex){
 
-	vec2 lineVector2 = normalize(simplex[0] - simplex[2]);
-	vec2 lineVector1 = normalize(simplex[1] - simplex[2]);
+	vec2 lineVector2 = simplex[0] - simplex[2];
+	vec2 lineVector1 = simplex[1] - simplex[2];
 	vec2 perpendicular1 = perpendicularVector(lineVector2, lineVector1, lineVector1);
-	vec2 towardsOrigin = normalize(-simplex[2]);
+	vec2 towardsOrigin = -simplex[2];
 
 	if(dot(perpendicular1, towardsOrigin) > 0){
 		simplex.erase(remove(simplex.begin(), simplex.end(), simplex[0]), simplex.end());

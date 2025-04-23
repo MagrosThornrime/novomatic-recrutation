@@ -5,9 +5,22 @@ cmake -S . -B build
 cmake --build build
 ```
 
-How to run:
+How to run visualizer:
 ```bash
 ./build/collisions
+```
+
+Controls:
+- W: go up
+- D: go right
+- S: go down
+- A: go left
+- Q: rotate left
+- E: rotate right
+
+How to run tests:
+```bash
+./build/tests
 ```
 
 TODO: make it usable also on windows, test it on both systems
