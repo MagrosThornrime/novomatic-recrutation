@@ -20,6 +20,7 @@ bool GameObject::_setVertices(const std::array<sf::Vector2f, 3>& triangleVertice
         point.y = triangleVertices[i].y;
         _shape.setPoint(i, triangleVertices[i]);
     }
+	_triangle.setCircle();
     return true;
 }
 

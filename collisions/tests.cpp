@@ -8,6 +8,7 @@ TEST(Tests, SimpleCollision){
         vec2(200, 200),
         vec2(0, -200)
     };
+    triangle1.setCircle();
 
     triangle triangle2 = {
         vec2(-300, -100),
@@ -15,6 +16,7 @@ TEST(Tests, SimpleCollision){
         vec2(-100, 100)
     };
 
+    triangle2.setCircle();
     ASSERT_TRUE(isColliding(triangle1, triangle2));
 }
 
@@ -24,12 +26,14 @@ TEST(Tests, NoCollision){
         vec2(200, 200),
         vec2(0, -200)
     };
+    triangle1.setCircle();
 
     triangle triangle2 = {
         vec2(-300, -100),
         vec2(-100, -100),
         vec2(-300, 100)
     };
+    triangle2.setCircle();
 
     ASSERT_FALSE(isColliding(triangle1, triangle2));
 }
@@ -40,12 +44,14 @@ TEST(Tests, TriangleInside){
         vec2(200, 200),
         vec2(0, -200)
     };
+    triangle1.setCircle();
 
     triangle triangle2 = {
         vec2(0, -100),
         vec2(100, 100),
         vec2(-100, 100)
     };
+    triangle2.setCircle();
 
     ASSERT_TRUE(isColliding(triangle1, triangle2));
 }

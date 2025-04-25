@@ -2,19 +2,19 @@
 #include <limits>
 #include <bits/stdc++.h>
 
-vec3 cross(const vec3& first, const vec3& second){
+vec3 vec3::cross(const vec3& other) const{
 	return {
-		(first.y * second.z - first.z * second.y),
-		(first.z * second.x - first.x * second.z),
-		(first.x * second.y - first.y * second.x)
+		(y * other.z - z * other.y),
+		(z * other.x - x * other.z),
+		(x * other.y - y * other.x)
 	};
 }
 
-vec2 to2D(const vec3& vector){
-	return {vector.x, vector.y};
+vec2 vec3::to2D() const{
+	return {x, y};
 }
 
-vec3 to3D(const vec2& vector){
+vec3 vec3::to3D(const vec2& vector){
 	return {vector.x, vector.y, 0.0f};
 }
 
@@ -25,7 +25,7 @@ vec2 supportFunction(const triangle& triangle, vec2 direction) {
 
 	for (int i = 0; i < 3; i++) {
 		const vec2 vertex = triangle.points[i];
-		const float product = dot(vertex, direction);
+		const float product = vertex.dot(direction);
 		if (product > supportProduct) {
 			supportProduct = product;
 			supportVertex = vertex;
@@ -42,13 +42,13 @@ vec2 minkowskiPoint(const triangle& triangle1, const triangle& triangle2, vec2 d
 }
 
 bool pointPassedOrigin(vec2 direction, vec2 supportVertex){
-	return dot(supportVertex, direction) > 0;
+	return supportVertex.dot(direction) > 0;
 }
 
 vec2 perpendicularVector(vec2 vector1, vec2 vector2, vec2 vector3){
-	vec3 perpendicular = cross(to3D(vector1), to3D(vector2));
-	perpendicular = cross(perpendicular, to3D(vector3));
-	return to2D(perpendicular);
+	vec3 perpendicular = vec3::to3D(vector1).cross(vec3::to3D(vector2));
+	perpendicular = perpendicular.cross(vec3::to3D(vector3));
+	return perpendicular.to2D();
 }
 
 bool createLine(std::vector<vec2>& simplex, const triangle& triangle1, const triangle& triangle2){
@@ -72,12 +72,12 @@ bool containsOrigin(std::vector<vec2>& simplex){
 	vec2 perpendicular1 = perpendicularVector(lineVector2, lineVector1, lineVector1);
 	vec2 towardsOrigin = -simplex[2];
 
-	if(dot(perpendicular1, towardsOrigin) > 0){
+	if(perpendicular1.dot(towardsOrigin) > 0){
 		simplex.erase(remove(simplex.begin(), simplex.end(), simplex[0]), simplex.end());
 		return false;
 	}
 	vec2 perpendicular2 = perpendicularVector(lineVector1, lineVector2, lineVector2);
-	if(dot(perpendicular2, towardsOrigin) > 0){
+	if(perpendicular2.dot(towardsOrigin) > 0){
 		simplex.erase(remove(simplex.begin(), simplex.end(), simplex[1]), simplex.end());
 		return false;
 	}
@@ -85,7 +85,17 @@ bool containsOrigin(std::vector<vec2>& simplex){
 	return true;
 }
 
+bool isCirclesColliding(const triangle& triangle1, const triangle& triangle2){
+	float distance = (triangle1.circleCenter - triangle2.circleCenter).norm();
+	return distance < triangle1.circleRadius + triangle2.circleRadius;
+}
+
 bool isColliding(const triangle& triangle1, const triangle& triangle2) {
+
+	if(!isCirclesColliding(triangle1, triangle2)){
+		return false;
+	}
+
 	std::vector<vec2> simplex;
 	vec2 direction = {1, 0};
 	simplex.push_back(minkowskiPoint(triangle1, triangle2, direction));

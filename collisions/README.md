@@ -7,7 +7,7 @@ cmake --build build
 
 How to run visualizer:
 ```bash
-./build/collisions
+./build/game
 ```
 
 Controls:

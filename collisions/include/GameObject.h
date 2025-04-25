@@ -3,13 +3,14 @@
 #include <SFML/Graphics.hpp>
 
 class GameObject {
-    triangle _triangle;
     sf::ConvexShape _shape;
     bool _hasCollision = false;
 
     static bool _isInsideBorders(const std::array<sf::Vector2f, 3>& triangleVertices, float screenWidth, float screenHeight);
 
 protected:
+    triangle _triangle;
+
     bool _setVertices(const std::array<sf::Vector2f, 3>& triangleVertices, float screenWidth, float screenHeight);
     void _getVertices(std::array<sf::Vector2f, 3>& triangleVertices) const;
 
