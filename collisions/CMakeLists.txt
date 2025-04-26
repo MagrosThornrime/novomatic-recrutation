@@ -11,6 +11,8 @@ set(GAME_SOURCES
         src/GameObject.cpp
         src/Application.cpp
         src/Collisions.cpp
+        src/Vec2.cpp
+        src/Vec3.cpp
 )
 
 set(GAME_HEADERS
@@ -19,16 +21,22 @@ set(GAME_HEADERS
         include/GameObject.h
         include/Application.h
         include/Collisions.h
+        include/Vec2.h
+        include/Vec3.h
 )
 
 set(TEST_SOURCES
         src/Triangle.cpp
         src/Collisions.cpp
+        src/Vec2.cpp
+        src/Vec3.cpp
 )
 
 set(TEST_HEADERS
         include/Triangle.h
         include/Collisions.h
+        include/Vec2.h
+        include/Vec3.h
 )
 
 find_package(SFML REQUIRED)

@@ -2,18 +2,7 @@
 #include <array>
 #include <vector>
 #include <string>
-
-struct vec2 {
-    float x, y;
-
-	vec2 operator-() const;
-	vec2 operator-(const vec2& other) const;
-	bool operator==(const vec2& other) const;
-	float dot(const vec2& other) const;
-	float norm() const;
-	vec2 normalize() const;
-	std::string toString() const;
-};
+#include <Vec2.h>
 
 struct triangle {
     std::array<vec2, 3> points;
