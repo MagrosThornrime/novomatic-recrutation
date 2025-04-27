@@ -98,3 +98,31 @@ TEST(Tests, Empty)
     trie.longestMatches(prompt, 2, matches);
     ASSERT_EQ(matches.size(), 0);
 }
+
+TEST(Tests, WrongMatches)
+{
+    Trie trie;
+
+    const std::string word1 = "Kiedy jest nowy rok w Chinach?";
+    const std::string word2 = "Kiedy jest nowy rok w Tajlandii?";
+    trie.insertWord(word1);
+    trie.insertWord(word2);
+
+    std::vector<std::string> matches;
+    const std::string prompt = "Kiedy jest nowy rok";
+
+    std::string exceptionText;
+
+    EXPECT_THROW({
+        try
+        {
+            trie.longestMatches(prompt, -5, matches);
+        }
+        catch( const std::invalid_argument& e )
+        {
+            EXPECT_STREQ( "maxMatches must be greater than 0", e.what() );
+            throw;
+        }
+    }, std::invalid_argument );
+
+}
