@@ -41,12 +41,12 @@ cmake -S . -B build
 cmake --build build
 ```
 
-How to run visualizer:
+## How to run visualizer:
 ```bash
 ./build/engine
 ```
 
-How to run tests:
+## How to run tests:
 ```bash
 ./build/tests
 ```
