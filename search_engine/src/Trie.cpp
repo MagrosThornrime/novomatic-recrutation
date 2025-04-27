@@ -49,6 +49,15 @@ void Trie::insertWord(const std::string& word){
     current->isWordEnd = true;
 }
 
+bool Trie::_wrongStart(const TrieNode* node, const std::string& givenWord)
+{
+    if (node == nullptr)
+    {
+        return true;
+    }
+    return node->value != tolower(givenWord[0]) && node->value != toupper(givenWord[0]);
+}
+
 
 void Trie::longestMatches(const std::string& givenWord, int maxMatches, std::vector<std::string>& matches){
 
@@ -64,7 +73,7 @@ void Trie::longestMatches(const std::string& givenWord, int maxMatches, std::vec
     while(!dfsStack.empty()){
         TrieNode* currentNode = dfsStack.top();
         TrieNode* nextNode = _getNextNode(currentNode, givenWord, foundWord.size(), visitedNodes);
-        if (dfsStack.size() == 1 && (nextNode == nullptr || nextNode->value != givenWord[0]))
+        if (dfsStack.size() == 1 && _wrongStart(nextNode, givenWord))
         {
             return;
         }

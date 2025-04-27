@@ -9,6 +9,7 @@ class Trie {
 
 	TrieNode* _getBestNode(TrieNode* current, const std::string& word, int characters);
     TrieNode* _getNextNode(TrieNode* current, const std::string& word, int characters, std::set<TrieNode*>& visited);
+    bool _wrongStart(const TrieNode* node, const std::string& givenWord);
 
 public:
     void insertWord(const std::string& word);
