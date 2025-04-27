@@ -2,3 +2,4 @@
 cmake-build-debug/
 .idea/
 collisions/compile.sh
+search_engine/imgui.ini
