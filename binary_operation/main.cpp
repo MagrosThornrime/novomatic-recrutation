@@ -32,6 +32,6 @@ struct Concatenate
 };
 
 int main() {
-    Value result = calculate<Concatenate, Value>(3, Value("a"), Concatenate());
-    std::cout << result.value << std::endl;
+    std::string result = calculate<Concatenate, Value>(1000, Value("a"), Concatenate());
+    std::cout << result << std::endl;
 }

@@ -1,5 +1,8 @@
 #pragma once
 #include <concepts>
+#include <thread>
+#include <vector>
+#include <future>
 
 template <class T, class Op>
 concept IsSupported = requires(T first, T second, Op operation)
@@ -10,10 +13,44 @@ concept IsSupported = requires(T first, T second, Op operation)
 
 template <class BinaryOp, class ValueType>
 requires IsSupported<ValueType, BinaryOp>
-ValueType calculate(int n, ValueType value, const BinaryOp& f){
+ValueType calculateSequential(int n, ValueType value, const BinaryOp& f){
     ValueType result = ValueType::identity();
     for(int i = 0; i < n; i++){
         result = f(result, value);
     }
+    return result;
+}
+
+
+template <class BinaryOp, class ValueType>
+requires IsSupported<ValueType, BinaryOp>
+ValueType calculate(int n, ValueType value, const BinaryOp& f){
+
+    int processor_count = std::thread::hardware_concurrency();
+    std::vector<std::future<ValueType>> futures;
+
+    int portionSize = n / processor_count;
+    int remainder = n % processor_count;
+
+    for (int i=0; i<processor_count; i++)
+    {
+        futures.emplace_back(
+            std::async(
+                std::launch::async,
+                    calculateSequential<BinaryOp, ValueType>,
+                    portionSize,
+                    value,
+                    f
+            )
+        );
+    }
+
+    ValueType result = calculateSequential(remainder, value, f);
+    for (auto& future : futures)
+    {
+        auto currentValue = future.get();
+        result = f(result, currentValue);
+    }
+
     return result;
 }
