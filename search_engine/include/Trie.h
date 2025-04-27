@@ -13,4 +13,5 @@ class Trie {
 public:
     void insertWord(const std::string& word);
     void longestMatches(const std::string& word, int maxMatches, std::vector<std::string>& matches);
+    void clear();
 };

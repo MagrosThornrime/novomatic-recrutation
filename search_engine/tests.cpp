@@ -66,3 +66,24 @@ TEST(Tests, NoFound){
     trie.longestMatches(prompt, 1, matches);
     ASSERT_EQ(matches.size(), 0);
 }
+
+TEST(Tests, Clear){
+    Trie trie;
+
+    std::string prompt = "Kiedy jest nowy rok";
+    const std::string word1 = "Kiedy jest nowy rok w Chinach?";
+    trie.insertWord(word1);
+
+    std::vector<std::string> matches;
+    trie.longestMatches(prompt, 2, matches);
+    ASSERT_EQ(matches.size(), 1);
+    ASSERT_EQ(matches[0], word1);
+
+    trie.clear();
+
+    const std::string word2 = "Kiedy jest nowy rok w Tajlandii?";
+    trie.insertWord(word2);
+    trie.longestMatches(prompt, 2, matches);
+    ASSERT_EQ(matches.size(), 1);
+    ASSERT_EQ(matches[0], word2);
+}

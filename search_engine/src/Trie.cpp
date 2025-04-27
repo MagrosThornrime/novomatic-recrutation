@@ -85,3 +85,7 @@ void Trie::longestMatches(const std::string& givenWord, int maxMatches, std::vec
         }
     }
 }
+
+void Trie::clear(){
+    _root.children.clear();
+}
