@@ -26,6 +26,10 @@ template <class BinaryOp, class ValueType>
 requires IsSupported<ValueType, BinaryOp>
 ValueType calculate(int n, ValueType value, const BinaryOp& f){
 
+    if(n <= 0){
+        throw std::invalid_argument("n must be greater than zero");
+    }
+
     int processor_count = std::thread::hardware_concurrency();
     std::vector<std::future<ValueType>> futures;
 
@@ -45,7 +49,10 @@ ValueType calculate(int n, ValueType value, const BinaryOp& f){
         );
     }
 
-    ValueType result = calculateSequential(remainder, value, f);
+    ValueType result = ValueType::identity();
+    if(remainder > 0){
+       result = calculateSequential(remainder, value, f);
+    }
     for (auto& future : futures)
     {
         auto currentValue = future.get();
