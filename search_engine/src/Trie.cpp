@@ -46,6 +46,7 @@ void Trie::insertWord(const std::string& word){
             current = current->getChild(character);
         }
     }
+    current->isWordEnd = true;
 }
 
 
@@ -64,7 +65,7 @@ void Trie::longestMatches(const std::string& givenWord, int maxMatches, std::vec
         TrieNode* currentNode = dfsStack.top();
         TrieNode* nextNode = _getNextNode(currentNode, givenWord, foundWord.size(), visitedNodes);
         if(nextNode == nullptr){
-            if (currentNode->children.empty())
+            if (currentNode->isWordEnd)
             {
                 matches.push_back(foundWord);
                 if(matches.size() == maxMatches){

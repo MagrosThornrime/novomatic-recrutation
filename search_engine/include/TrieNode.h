@@ -4,6 +4,7 @@
 struct TrieNode {
     std::unordered_map<char, TrieNode> children;
     char value{};
+    bool isWordEnd{};
 
     TrieNode() = default;
     explicit TrieNode(char character) : value(character) {}

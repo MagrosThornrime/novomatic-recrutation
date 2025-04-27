@@ -34,3 +34,23 @@ TEST(Tests, DifferentCases){
     ASSERT_EQ(matches[0], word1);
 }
 
+TEST(Tests, Shorter){
+    Trie trie;
+
+    const std::string word1 = "adaam";
+    const std::string word2 = "adaaś";
+    const std::string word3 = "ada";
+    const std::string word4 = "apcr";
+    trie.insertWord(word1);
+    trie.insertWord(word2);
+    trie.insertWord(word3);
+    trie.insertWord(word4);
+
+    std::vector<std::string> matches;
+    const std::string prompt = "ad";
+    trie.longestMatches(prompt, 3, matches);
+    ASSERT_EQ(matches.size(), 3);
+    ASSERT_TRUE(std::find(matches.begin(), matches.end(), word1) != matches.end());
+    ASSERT_TRUE(std::find(matches.begin(), matches.end(), word2) != matches.end());
+    ASSERT_TRUE(std::find(matches.begin(), matches.end(), word3) != matches.end());
+}
