@@ -1,7 +1,8 @@
 {
   "window": {
     "width": 1200,
-    "height": 900
+    "height": 900,
+    "font-scale": 4
   },
   "trie": {
     "matches": 5

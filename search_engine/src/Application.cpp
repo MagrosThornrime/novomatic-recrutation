@@ -26,6 +26,7 @@ void Application::_initWindow(Json::Value& root){
     Json::Value windowData = root["window"];
     _windowWidth = windowData["width"].asUInt();
     _windowHeight = windowData["height"].asUInt();
+    _fontScale = windowData["font-scale"].asInt();
 }
 
 void Application::_initTrie(Json::Value& root)
@@ -57,7 +58,7 @@ void Application::_renderSearchForm()
     static bool cleared = false;
 
     ImGui::Begin("Searchie");
-    ImGui::SetWindowFontScale(2);
+    ImGui::SetWindowFontScale(_fontScale);
     ImGui::SetWindowSize({static_cast<float>(_windowWidth) / 1.15f, static_cast<float>(_windowHeight) / 1.15f});
     while(_window.pollEvent(_event)) {
         ImGui::SFML::ProcessEvent(_window, _event);
@@ -110,4 +111,9 @@ void Application::run(){
         ImGui::SFML::Render(_window);
         _window.display();
     }
+}
+
+Application::~Application()
+{
+    ImGui::SFML::Shutdown();
 }

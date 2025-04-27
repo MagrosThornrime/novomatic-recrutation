@@ -7,6 +7,7 @@
 class Application
 {
     unsigned int _windowWidth, _windowHeight;
+    int _fontScale;
 
     sf::RenderWindow _window;
     sf::Clock _clock;
@@ -23,4 +24,5 @@ class Application
 public:
     explicit Application(const std::string& configFile);
     void run();
+    ~Application();
 };
