@@ -54,3 +54,15 @@ TEST(Tests, Shorter){
     ASSERT_TRUE(std::find(matches.begin(), matches.end(), word2) != matches.end());
     ASSERT_TRUE(std::find(matches.begin(), matches.end(), word3) != matches.end());
 }
+
+TEST(Tests, NoFound){
+    Trie trie;
+
+    const std::string word1 = "Kiedy jest nowy rok w chinach?";
+    trie.insertWord(word1);
+
+    std::vector<std::string> matches;
+    const std::string prompt = "Bajo jajo";
+    trie.longestMatches(prompt, 1, matches);
+    ASSERT_EQ(matches.size(), 0);
+}
