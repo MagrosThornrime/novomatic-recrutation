@@ -8,20 +8,17 @@ project(binary_operation)
 
 set(CMAKE_CXX_STANDARD 20)
 
-set(TEST_SOURCES
-        src/Value.h
-)
-
 set(TEST_HEADERS
         include/Calculate.hpp
-        include/Value.h
+        include/StringValue.hpp
+        include/StringConcatenate.hpp
 )
 
 find_package(GTest REQUIRED)
 
 enable_testing()
 
-add_executable(tests tests.cpp ${TEST_SOURCES} ${TEST_HEADERS})
+add_executable(tests tests.cpp ${TEST_HEADERS})
 target_include_directories(tests PRIVATE include)
 target_link_libraries(tests PRIVATE GTest::gtest_main)
 

@@ -1,12 +1,12 @@
 #pragma once
 
-struct Value
+struct StringValue
 {
     std::string value;
 
-    static Value identity()
+    static StringValue identity()
     {
-        return Value("");
+        return StringValue("");
     }
 
     template<typename T>
