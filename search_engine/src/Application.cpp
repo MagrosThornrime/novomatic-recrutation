@@ -1,8 +1,6 @@
 #include <Application.h>
 #include <imgui.h>
 #include <imgui-SFML.h>
-
-#include <Application.h>
 #include <sstream>
 #include <fstream>
 #include <iostream>
