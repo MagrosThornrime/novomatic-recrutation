@@ -32,14 +32,6 @@ set(TEST_HEADERS
         include/TrieNode.h
 )
 
-#include(FetchContent)
-#FetchContent_Declare(
-#        imgui-sfml
-#        GIT_REPOSITORY https://github.com/eliasdaler/imgui-sfml.git
-#        GIT_TAG master
-#)
-#FetchContent_MakeAvailable(imgui-sfml)
-
 find_package(SFML REQUIRED)
 find_package(GTest REQUIRED)
 find_package(jsoncpp REQUIRED)
