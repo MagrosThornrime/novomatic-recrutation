@@ -53,9 +53,6 @@ Application::Application(const std::string& configFile){
     }
 }
 
-
-
-
 void Application::run(){
     while(_window.isOpen()) {
         ImGui::SFML::Update(_window, _clock.restart());
