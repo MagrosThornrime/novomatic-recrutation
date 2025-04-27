@@ -1,10 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include <imgui.h>
-#include <imgui-SFML.h>
-
-#include <iostream>
-
-#include "Application.h"
+#include <Application.h>
 
 
 int main() {

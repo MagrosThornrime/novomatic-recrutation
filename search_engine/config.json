@@ -1,8 +1,14 @@
 {
   "window": {
     "width": 1200,
-    "height": 900,
-    "font-scale": 4
+    "height": 900
+  },
+  "engine": {
+    "font-scale": 4,
+    "window-scale": 1.1,
+    "max-matches": 5,
+    "search-text": "Currently the browser doesn't\n support real searching.\nBut don't worry!\nYour prompt was added to the history!",
+    "clear-text": "Your history was cleared."
   },
   "trie": {
     "matches": 5

@@ -12,12 +12,14 @@ set(ENGINE_SOURCES
         src/Trie.cpp
         src/TrieNode.cpp
         src/Application.cpp
+        src/SearchEngine.cpp
 )
 
 set(ENGINE_HEADERS
         include/Trie.h
         include/TrieNode.h
         include/Application.h
+        include/SearchEngine.h
 )
 
 set(TEST_SOURCES
