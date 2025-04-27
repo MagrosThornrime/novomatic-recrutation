@@ -25,6 +25,7 @@ void SearchEngine::_renderSearchButton()
     if (ImGui::Button("Search")) {
         _searched = true;
         _trie.insertWord(std::string(_prompt));
+        _prompt[0] = '\0';
     }
 }
 
@@ -34,6 +35,7 @@ void SearchEngine::_renderClearButton()
     {
         _cleared = true;
         _trie.clear();
+        _matches.clear();
     }
 }
 
