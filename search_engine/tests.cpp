@@ -80,10 +80,21 @@ TEST(Tests, Clear){
     ASSERT_EQ(matches[0], word1);
 
     trie.clear();
+    matches.clear();
 
     const std::string word2 = "Kiedy jest nowy rok w Tajlandii?";
     trie.insertWord(word2);
     trie.longestMatches(prompt, 2, matches);
     ASSERT_EQ(matches.size(), 1);
     ASSERT_EQ(matches[0], word2);
+}
+
+TEST(Tests, Empty)
+{
+    Trie trie;
+
+    std::string prompt = "Kiedy jest nowy rok";
+    std::vector<std::string> matches;
+    trie.longestMatches(prompt, 2, matches);
+    ASSERT_EQ(matches.size(), 0);
 }

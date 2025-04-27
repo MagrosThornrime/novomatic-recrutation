@@ -64,7 +64,7 @@ void Trie::longestMatches(const std::string& givenWord, int maxMatches, std::vec
     while(!dfsStack.empty()){
         TrieNode* currentNode = dfsStack.top();
         TrieNode* nextNode = _getNextNode(currentNode, givenWord, foundWord.size(), visitedNodes);
-        if (dfsStack.size() == 1 && nextNode->value != givenWord[0])
+        if (dfsStack.size() == 1 && (nextNode == nullptr || nextNode->value != givenWord[0]))
         {
             return;
         }
