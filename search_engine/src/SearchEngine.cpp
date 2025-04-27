@@ -67,6 +67,7 @@ void SearchEngine::renderForm(unsigned int windowWidth, unsigned int windowHeigh
     _renderMatches();
     _renderSearchButton();
     _renderClearButton();
+    _renderSearchedText();
     _renderClearedText();
 
     ImGui::End();
