@@ -2,16 +2,22 @@
 #include <stdexcept>
 #include <ranges>
 #include <Trie.h>
+#include <cctype>
 
 TrieNode* Trie::_getBestNode(TrieNode* current, const std::string& word, int characters){
 	if(characters >= word.size()){
 		return nullptr;
 	}
-	char character = word[characters];
-	if(!current->contains(character)){
-		return nullptr;
+    char character = word[characters];
+    if (current->contains(character))
+    {
+        return current->getChild(character);
+    }
+    char other = tolower(character) == character ? toupper(character) : tolower(character);
+	if(current->contains(other)){
+	    return current->getChild(other);
 	}
-	return current->getChild(character);
+	return nullptr;
 }
 
 TrieNode* Trie::_getNextNode(TrieNode* current, const std::string& word, int characters,
